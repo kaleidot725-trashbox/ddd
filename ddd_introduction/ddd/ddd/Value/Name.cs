@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace ddd.sample_02
+namespace ddd.Value
 {
     class Name
     {

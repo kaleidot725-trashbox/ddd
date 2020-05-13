@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ddd.sample_02
+namespace ddd.Value
 {
     class Money
     {

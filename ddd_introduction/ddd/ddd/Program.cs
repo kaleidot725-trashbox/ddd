@@ -1,4 +1,4 @@
-﻿using ddd.sample_02;
+﻿using ddd.Value;
 using System;
 
 namespace ddd
