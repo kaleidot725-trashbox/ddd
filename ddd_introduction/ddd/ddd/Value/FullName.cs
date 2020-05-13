@@ -23,7 +23,6 @@ namespace ddd.Value
             this.LastName = lastName;
         }
 
-
         private bool Equals(FullName other)
         {
             if (ReferenceEquals(null, other)) return false;
@@ -41,10 +40,7 @@ namespace ddd.Value
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                return ((FirstName != null ? FirstName.GetHashCode() : 0) * 397) ^ (LastName != null ? LastName.GetHashCode() : 0);
-            }
+            return HashCode.Combine(FirstName, MiddleName, LastName);
         }
 
         public override string ToString()
