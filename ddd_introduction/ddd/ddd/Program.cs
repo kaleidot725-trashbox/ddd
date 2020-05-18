@@ -1,5 +1,6 @@
 ﻿using ddd.DomainService;
 using ddd.Entity;
+using ddd.Repository;
 using ddd.Value;
 using System;
 
@@ -12,6 +13,7 @@ namespace ddd
             TestValue();
             TestEntity();
             TestDomainService();
+            TestRepository();
         }
 
         private static void TestValue()
@@ -40,6 +42,25 @@ namespace ddd
 
             var domainService = new DomainService.UserService();
             Console.WriteLine(domainService.Exists(user));
+        }
+
+        private static void TestRepository()
+        {
+            var user = new Repository.User(new Repository.UserId("0"), new Repository.Name("Kaleidot725"));
+            Console.WriteLine(user.ToString());
+
+            var userService = new Repository.UserService(new Repository.UserRepository());
+            if (!userService.Exists(user))
+            {
+                IUserRepository repository = new Repository.UserRepository();
+                repository.Save(user);
+                Console.WriteLine($"{user.Name}は存在していないので、保存しました");
+            }
+            else 
+            {
+                Console.Write($"{user.Name}は既に存在しています。");
+
+            }
         }
     }
 }
