@@ -32,7 +32,7 @@ namespace ddd
             var user = new Entity.User(new Entity.UserId("0"), new Entity.Name("Kaleidot725"));
             Console.WriteLine(user.ToString());
 
-            user.changeName(new Entity.Name("function725"));
+            user.ChangeName(new Entity.Name("function725"));
             Console.WriteLine(user.ToString());
         }
 
@@ -72,9 +72,14 @@ namespace ddd
             var applicationService = new ApplicationService.UserApplicationService(repository, domainService);
 
             // Execute
-            applicationService.Register("0", "Kaleidot725");
-            var userData = applicationService.Get("0");
-            Console.WriteLine(userData.Id + " " + userData.Name);
+            applicationService.Register("0", "Kaleidot725", "good@mail.com");
+            var newUserData = applicationService.Get("0");
+            Console.WriteLine(newUserData.Id + " " + newUserData.Name + " " + newUserData.MailAddress);
+
+            var updateCommand = new ApplicationService.UserUpdateCommand("0", "Kaleidot888", "bad@mail.com");
+            applicationService.Update(updateCommand);
+            var updateUserData = applicationService.Get("0");
+            Console.WriteLine(updateUserData.Id + " " + updateUserData.Name + " " + updateUserData.MailAddress);
         }
     }
 }

@@ -1,12 +1,11 @@
 ﻿using System;
-
 namespace ddd.ApplicationService
 {
-    class UserId
+    public class MailAddress
     {
         public readonly string Value;
 
-        public UserId(string value)
+        public MailAddress(string value)
         {
             if (value == null) throw new ArgumentNullException(nameof(value));
             this.Value = value;
@@ -14,7 +13,7 @@ namespace ddd.ApplicationService
 
         public override string ToString()
         {
-            return this.Value;
+            return Value;
         }
     }
 }

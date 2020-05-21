@@ -24,7 +24,7 @@ namespace ddd.ApplicationService
         public User Find(UserId id)
         {
             Console.WriteLine("UserRepository Find");
-            return list.FirstOrDefault(it => it.UserId.value == id.value);
+            return list.FirstOrDefault(it => it.UserId.Value == id.Value);
         }
 
         public User Find(Name name) 
@@ -36,7 +36,7 @@ namespace ddd.ApplicationService
         public bool Exists(User user)
         {
             Console.WriteLine("UserRepository Exists");
-            return list.Any(it => it.UserId.value == user.UserId.value);
+            return list.Any(it => it.UserId.Value == user.UserId.Value);
         }
     }
 }

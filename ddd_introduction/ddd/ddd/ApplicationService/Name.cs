@@ -5,13 +5,13 @@ namespace ddd.ApplicationService
 {
     class Name
     {
-        public readonly string value;
+        public readonly string Value;
 
         public Name(string value)
         {
             if (value == null) throw new ArgumentNullException(nameof(value));
             if (!ValidateName(value)) throw new ArgumentException(nameof(value));
-            this.value = value;
+            this.Value = value;
         }
 
         private bool ValidateName(string str)
@@ -24,7 +24,7 @@ namespace ddd.ApplicationService
 
         public override string ToString()
         {
-            return value;
+            return Value;
         }
     }
 }

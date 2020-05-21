@@ -10,44 +10,29 @@ namespace ddd.ApplicationService
     {
         public readonly UserId UserId;
         public Name Name;
+        public MailAddress MailAddress;
 
-        public User(UserId userId, Name name)
+        public User(UserId userId, Name name, MailAddress mailAddress)
         {
             if (userId == null) throw new ArgumentNullException(nameof(userId));
             if (name == null) throw new ArgumentNullException(nameof(name));
+            if (mailAddress == null) throw new ArgumentNullException(nameof(mailAddress));
 
             this.UserId = userId;
             this.Name = name;
+            this.MailAddress = mailAddress;
         }
 
-        public void changeName(Name name)
+        public void ChangeName(Name name)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
             this.Name = name;
         }
 
-
-        private bool Equals(User other)
+        public void ChangeMailAddress(MailAddress mailAddress)
         {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return (this.UserId.value == other.UserId.value);
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((User)obj);
-        }
-
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                return (Name != null ? Name.GetHashCode() : 0);
-            }
+            if (mailAddress == null) throw new ArgumentNullException(nameof(mailAddress));
+            this.MailAddress = mailAddress;
         }
 
         public override string ToString()
