@@ -10,10 +10,11 @@ namespace ddd
     {
         static void Main(string[] args)
         {
-            TestValue();
-            TestEntity();
-            TestDomainService();
-            TestRepository();
+            //TestValue();
+            //TestEntity();
+            //TestDomainService();
+            //TestRepository();
+            TestApplicationService();
         }
 
         private static void TestValue()
@@ -61,6 +62,19 @@ namespace ddd
                 Console.Write($"{user.Name}は既に存在しています。");
 
             }
+        }
+
+        private static void TestApplicationService()
+        {
+            // Setup
+            var repository = new ApplicationService.UserRepository();
+            var domainService = new ApplicationService.UserService(repository);
+            var applicationService = new ApplicationService.UserApplicationService(repository, domainService);
+
+            // Execute
+            applicationService.Register("0", "Kaleidot725");
+            var userData = applicationService.Get("0");
+            Console.WriteLine(userData.Id + " " + userData.Name);
         }
     }
 }
