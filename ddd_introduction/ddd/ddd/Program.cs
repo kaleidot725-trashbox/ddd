@@ -66,20 +66,35 @@ namespace ddd
 
         private static void TestApplicationService()
         {
-            // Setup
-            var repository = new ApplicationService.UserRepository();
-            var domainService = new ApplicationService.UserService(repository);
-            var applicationService = new ApplicationService.UserApplicationService(repository, domainService);
+            var defaultId = "0";
+            var defaultName = "Kaleidot725";
+            var defaultMailAddress = "good@mail.com";
+            var nextName = "Kaleidot888";
+            var nextMailAddress = "bad@mail.com";
 
-            // Execute
-            applicationService.Register("0", "Kaleidot725", "good@mail.com");
-            var newUserData = applicationService.Get("0");
+            var repository = new ApplicationService.UserRepository();
+            var applicationService = new ApplicationService.UserApplicationService(
+                new ApplicationService.UserGetInfoService(repository),
+                new ApplicationService.UserRegisterService(repository),
+                new ApplicationService.UserDeleteService(repository),
+                new ApplicationService.UserUpdateService(repository)
+            );
+
+            var registerCommand = new ApplicationService.UserRegisterCommand(defaultId, defaultName, defaultMailAddress);
+            applicationService.Register(registerCommand);
+            var newUserData = applicationService.Get(defaultId);
             Console.WriteLine(newUserData.Id + " " + newUserData.Name + " " + newUserData.MailAddress);
 
-            var updateCommand = new ApplicationService.UserUpdateCommand("0", "Kaleidot888", "bad@mail.com");
+            var updateCommand = new ApplicationService.UserUpdateCommand(defaultId, nextName, nextMailAddress);
             applicationService.Update(updateCommand);
-            var updateUserData = applicationService.Get("0");
+            var updateUserData = applicationService.Get(defaultId);
             Console.WriteLine(updateUserData.Id + " " + updateUserData.Name + " " + updateUserData.MailAddress);
+
+            var deleteCommand = new ApplicationService.UserDeleteCommand(defaultId);
+            applicationService.Delete(deleteCommand);
+            var deleteUserData = applicationService.Get(defaultId);
+            Console.WriteLine(deleteUserData == null ? "Null" : "Not Null");
+
         }
     }
 }

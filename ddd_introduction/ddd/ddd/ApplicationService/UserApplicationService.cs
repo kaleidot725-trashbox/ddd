@@ -1,65 +1,45 @@
 ﻿using System;
+
 namespace ddd.ApplicationService
 {
     class UserApplicationService
     {
-        private readonly IUserRepository userRepository;
-        private readonly UserService userService;
+        private readonly IUserGetInfoService userGetInfoService;
+        private readonly IUserRegisterService userRegisterService;
+        private readonly IUserDeleteService userDeleteService;
+        private readonly IUserUpdateService userUpdateService;
 
-        public UserApplicationService(IUserRepository userRepository, UserService userService)
+        public UserApplicationService(
+            IUserGetInfoService userGetInfoService,
+            IUserRegisterService userRegisterService,
+            IUserDeleteService userDeleteService,
+            IUserUpdateService userUpdateService)
         {
-            this.userRepository = userRepository;
-            this.userService = userService;
+            this.userGetInfoService = userGetInfoService;
+            this.userRegisterService = userRegisterService;
+            this.userDeleteService = userDeleteService;
+            this.userUpdateService = userUpdateService;
         }
 
         public UserData Get(String userId)
         {
-            var targetId = new UserId(userId);
-            var user = userRepository.Find(targetId);
+            return userGetInfoService.Handle(userId);
+        }
 
-            if (user == null)
-            {
-                return null;
-            }
+        public void Register(UserRegisterCommand command) 
+	    {
+            this.userRegisterService.Handle(command);
+	    }
 
-            return new UserData(user);
+        public void Delete(UserDeleteCommand command)
+        {
+            this.userDeleteService.Handle(command);
+
         }
 
         public void Update(UserUpdateCommand command)
         {
-            var targetId = new UserId(command.Id);
-            var user = userRepository.Find(targetId);
-
-            if (user == null)
-            {
-                throw new Exception("ユーザーは存在しません。");
-            }
-
-
-            if (command.Name != null)
-            {
-                var newUserName = new Name(command.Name);
-                user.ChangeName(newUserName);
-            }
-
-            if (command.MailAddress != null)
-            {
-                var newMailAddress = new MailAddress(command.MailAddress);
-                user.ChangeMailAddress(newMailAddress);
-            }
-
-            userRepository.Save(user);
+            this.userUpdateService.Handle(command);
         }
-
-        public void Register(String userId, String name, String mailAddress) 
-	    {
-            var user = new User(new UserId(userId), new Name(name), new MailAddress(mailAddress));
-            if (userService.Exists(user)) 
-	        {
-                throw new Exception("ユーザは既に存在しています。");
-	        }
-
-            userRepository.Save(user);
-	    }
     }
 }

@@ -27,16 +27,10 @@ namespace ddd.ApplicationService
             return list.FirstOrDefault(it => it.UserId.Value == id.Value);
         }
 
-        public User Find(Name name) 
+        public User Find(MailAddress mailAddress) 
         {
             Console.WriteLine("UserRepository Find");
-            return list.FirstOrDefault(it => it.Name.Value == name.Value);
-        }
-
-        public bool Exists(User user)
-        {
-            Console.WriteLine("UserRepository Exists");
-            return list.Any(it => it.UserId.Value == user.UserId.Value);
+            return list.FirstOrDefault(it => it.MailAddress.Value == mailAddress.Value);
         }
     }
 }

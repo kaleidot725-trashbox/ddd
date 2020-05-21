@@ -9,7 +9,6 @@ namespace ddd.ApplicationService
         public void Save(User user);
         public void Delete(User user);
         public User Find(UserId id);
-        public User Find(Name name);
-        public bool Exists(User user);
+        public User Find(MailAddress mailAddress);
     }
 }

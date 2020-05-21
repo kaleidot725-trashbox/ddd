@@ -8,5 +8,9 @@
   <ItemGroup>
     <Folder Include="DomainService\" />
     <Folder Include="ApplicationService\" />
+    <Folder Include="ApplicationService\Command\" />
+    <Folder Include="ApplicationService\DomainService\" />
+    <Folder Include="ApplicationService\Entity\" />
+    <Folder Include="ApplicationService\Repository\" />
   </ItemGroup>
 </Project>
