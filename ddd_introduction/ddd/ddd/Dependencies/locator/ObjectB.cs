@@ -1,5 +1,5 @@
 ﻿using System;
-namespace ddd.Dependencies
+namespace ddd.Dependencies.locator
 {
     public class ObjectB
     {

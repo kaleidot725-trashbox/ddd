@@ -1,9 +1,9 @@
 ﻿using System;
-namespace ddd.Dependencies
+namespace ddd.Dependencies.di
 {
     public class ObjectA
     {
-        private ObjectB objectB;
+        private readonly ObjectB objectB;
 
         public ObjectA(ObjectB objectB)
         {
