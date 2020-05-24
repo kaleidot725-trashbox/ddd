@@ -12,5 +12,10 @@
     <Folder Include="ApplicationService\DomainService\" />
     <Folder Include="ApplicationService\Entity\" />
     <Folder Include="ApplicationService\Repository\" />
+    <Folder Include="Dependencies\" />
+    <Folder Include="Dependencies\Command\" />
+    <Folder Include="Dependencies\DomainService\" />
+    <Folder Include="Dependencies\Entity\" />
+    <Folder Include="Dependencies\Repository\" />
   </ItemGroup>
 </Project>
