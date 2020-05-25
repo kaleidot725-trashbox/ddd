@@ -15,5 +15,10 @@
     <Folder Include="Dependencies\" />
     <Folder Include="Dependencies\di\" />
     <Folder Include="Dependencies\locator\" />
+    <Folder Include="Factory\" />
+    <Folder Include="Factory\Command\" />
+    <Folder Include="Factory\DomainService\" />
+    <Folder Include="Factory\Entity\" />
+    <Folder Include="Factory\Repository\" />
   </ItemGroup>
 </Project>
