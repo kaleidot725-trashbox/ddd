@@ -2,7 +2,7 @@
 
 namespace ddd.ApplicationService
 {
-    class UserId
+    public class UserId
     {
         public readonly string Value;
 

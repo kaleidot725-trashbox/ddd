@@ -2,7 +2,7 @@
 
 namespace ddd.Factory
 {
-    class UserId
+    public class UserId
     {
         public readonly string Value;
 

@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace ddd.ApplicationService
 {
-    class User
+    public class User
     {
         public readonly UserId UserId;
         public Name Name;

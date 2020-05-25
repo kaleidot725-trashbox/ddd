@@ -14,7 +14,8 @@ namespace ddd
             //TestEntity();
             //TestDomainService();
             //TestRepository();
-            TestApplicationService();
+            //TestApplicationService();
+            TestFactory();
         }
 
         private static void TestValue()
@@ -95,6 +96,41 @@ namespace ddd
             var deleteUserData = applicationService.Get(defaultId);
             Console.WriteLine(deleteUserData == null ? "Null" : "Not Null");
 
+        }
+
+        private static void TestFactory()
+        {
+            try
+            {
+                var defaultName = "Kaleidot725";
+                var defaultMailAddress = "good@mail.com";
+                var nextName = "Kaleidot888";
+                var nextMailAddress = "bad@mail.com";
+
+                var repository = new Factory.UserRepository();
+                var factory = new Factory.UserFactory();
+
+
+                var newUser = factory.Create(new Factory.Name(defaultName), new Factory.MailAddress(defaultMailAddress));
+                repository.Save(newUser);
+
+                var getNewUser = repository.Find(newUser.UserId);
+                Console.WriteLine("Create " + getNewUser.UserId.Value + " " + getNewUser.Name.Value + " " + getNewUser.MailAddress.Value);
+
+                var updateUser = new Factory.User(newUser.UserId, new Factory.Name(nextName), new Factory.MailAddress(nextMailAddress));
+                repository.Save(updateUser);
+
+                var getUpdateUser = repository.Find(newUser.UserId);
+                Console.WriteLine("Update " + getUpdateUser.UserId.Value + " " + getUpdateUser.Name.Value + " " + getUpdateUser.MailAddress.Value);
+
+                repository.Delete(updateUser);
+                var getDeleteUser = repository.Find(newUser.UserId);
+                Console.WriteLine(getDeleteUser == null ? "Delete Success" : "Delete Failed");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 namespace ddd.ApplicationService
 {
-    class UserData
+    public class UserData
     {
         public string Id { get; }
         public string Name { get; }

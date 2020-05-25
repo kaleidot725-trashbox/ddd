@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace ddd.Factory
 {
-    class Name
+    public class Name
     {
         public readonly string Value;
 

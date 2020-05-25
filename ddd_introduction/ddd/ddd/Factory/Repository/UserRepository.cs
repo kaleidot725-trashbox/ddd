@@ -11,6 +11,11 @@ namespace ddd.Factory
 
         public void Save(User user)
         {
+            var existUser = Find(user.UserId);
+            if (existUser != null) {
+                Delete(existUser);
+            }
+
             list.Add(user);
             Console.WriteLine("UserRepository Save");
         }
