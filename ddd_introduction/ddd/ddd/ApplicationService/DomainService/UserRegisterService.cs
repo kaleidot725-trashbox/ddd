@@ -13,7 +13,7 @@ namespace ddd.ApplicationService
 
         public void Handle(UserRegisterCommand command)
         {
-            var user = new User(new UserId(command.Id), new Name(command.Name), new MailAddress(command.MailAddress));
+            var user = new User(new UserId(command.Id), new UserName(command.Name), new MailAddress(command.MailAddress));
             if (userDuplicatedChecker.Check(user))
             {
                 throw new Exception("ユーザは既に存在しています。");

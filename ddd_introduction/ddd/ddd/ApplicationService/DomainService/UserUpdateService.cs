@@ -20,7 +20,7 @@ namespace ddd.ApplicationService
 
             if (command.Name != null)
             {
-                user.ChangeName(new Name(command.Name));
+                user.ChangeName(new UserName(command.Name));
             }
 
             if (command.MailAddress != null)

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace ddd.ApplicationService
+namespace ddd.Application
 {
     public class UserName
     {
