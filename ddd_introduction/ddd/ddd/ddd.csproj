@@ -20,5 +20,9 @@
     <Folder Include="Factory\Repository\" />
     <Folder Include="Factory\Factory\" />
     <Folder Include="Application\" />
+    <Folder Include="Application\Repository\" />
+    <Folder Include="Application\Domain\" />
+    <Folder Include="Application\Service\" />
+    <Folder Include="Application\Factory\" />
   </ItemGroup>
 </Project>
